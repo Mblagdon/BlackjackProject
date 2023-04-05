@@ -1,1 +1,1 @@
-playersMoney = 100.0
+playersMoney = 100.00

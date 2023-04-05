@@ -2,9 +2,7 @@
 import random
 import db
 
-
 # a list of suit, rank, and point value for each card
-
 deck = []
 suits = ["Hearts", "Diamonds", "Clubs", "Spades"]
 ranks = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"]
@@ -14,6 +12,7 @@ for suit in suits:
     for rank in ranks:
         deck.append([suit, rank, point_values[rank]])
 
+# a function to deal the cards
 def deal_card(hand):
     card = random.choice(deck)
     hand.append(card)
