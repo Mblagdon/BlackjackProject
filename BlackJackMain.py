@@ -1,4 +1,4 @@
-#import random and db
+# import random and db
 import random
 import db
 
@@ -25,6 +25,23 @@ def deal_card(hand):
     card = random.choice(deck)
     hand.append(card)
     deck.remove(card)
+
+
+# a function to get the bet amount
+def get_bet_amount(money):
+    while True:
+        try:
+            bet = float(input(f"Enter the bet amount (minimum bet:{betMin}, maximum bet:{betMax}, current money: {money}: "))
+            if bet < betMin:
+                print(f"The minimum bet must be {betMin}.Please place a larger bet.")
+            elif bet > betMax:
+                print(f"The maximum bet must be {betMax}.Please place a smaller bet")
+            elif bet > money:
+                print("Your bet amount cannot be greater the your current money amount. Please place a smaller bet.")
+            else:
+                return bet
+        except ValueError:
+            print("Invalid input, please use a valid bet number.")
 
 
 
