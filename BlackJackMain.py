@@ -49,8 +49,10 @@ def getBetAmount(money):
 def buyMoreChips(money):
     while True:
         try:
-            if (money < 5):
+            if money < 5:
                 userBuyBack = input("Would you like to purchase some more chips? (y/n)")
+            else:
+                userBuyBack = None
             if userBuyBack.lower() == "y":
                 while True:
                     try:
