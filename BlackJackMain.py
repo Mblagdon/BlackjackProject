@@ -139,7 +139,26 @@ def playBlackjack():
                 printCards(playerHand)
             elif choice == "stand":
                 break
+        # check to see if player busted after hit
+        if pointsInHand(playerHand) > 21:
+            print("You have busted! You lost your bet!")
+            money -= bet
+            db.writeMoney(money)
+            continue
+        # dealer's turn
+        print("Dealer's hand: ")
+        printCards(dealerHand)
 
+        while pointsInHand(dealerHand) < 17:
+            dealCard(dealerHand)
+            print("Dealer's hand: ")
+            printCards(dealerHand)
+        # check to see if dealer busts
+        if pointsInHand(dealerHand) > 21:
+            print("The dealer has busted! You win!")
+            money += bet
+            db.writeMoney(money)
+            continue
 def main():
     print("BLACKJACK!")
     print("Blackjack payout is 3:2")
