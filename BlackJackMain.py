@@ -102,10 +102,10 @@ def playBlackjack():
     while True:
         # check player balance
         if money < betMin:
-            if buyMoreChips():
-                money += addChips
-            else:
-                break
+            buyMoreChips(money)
+        else:
+            print("Thanks for playing, goodbye!")
+            break
         # get player's bet amount
         bet = getBetAmount(money)
         # deal cards to both player and dealer
