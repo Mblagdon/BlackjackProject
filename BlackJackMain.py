@@ -130,6 +130,13 @@ def playBlackjack():
             money += round(bet * 1.5, 2)
             db.writeMoney(money)
             continue
+        # check if dealer was dealt blackjack
+        if pointsInHand(dealerHand) == 21:
+            print(f"Dealer has Blackjack! You lost your bet!")
+            money -= bet
+            db.writeMoney(money)
+            continue
+
         # if player doesn't have blackjack, continue with game to hit or stand.
         while pointsInHand(playerHand) < 21:
             choice = input("Would you like to hit or stand?")
@@ -184,12 +191,11 @@ def playBlackjack():
 def main():
     print("BLACKJACK!")
     print("Blackjack payout is 3:2")
-
-    try:
-        money = db.readMoney()
-    except FileNotFoundError:
-        money = 100
-
+    deckCreation()
+    dealCard(hand, deck)
+    pointsInHand(hand)
+    printCards(hand)
+    playBlackjack()
 
 if __name__ == '__main__':
     main()
