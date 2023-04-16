@@ -6,7 +6,7 @@ import db
 deck = []
 suits = ["Hearts", "Diamonds", "Clubs", "Spades"]
 ranks = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"]
-pointValues = {"Ace": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10, "Jack": 10, "Queen": 10, "King": 10}
+pointValues = {"Ace": 11, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10, "Jack": 10, "Queen": 10, "King": 10}
 
 # the bet min and max
 betMin = 5
@@ -70,6 +70,18 @@ def buyMoreChips(money):
         except ValueError:
             print("Please enter Y or N.")
 
+# function to handle point value of cards within hand
+def pointsInHand(hand):
+    points = sum(card[1] for card in hand)
+    """ if hand contains an Ace, check if total points would be greater than 21 with normal
+    ace value of 11. If normal ace value of 11 would cause a bust, converts ace value to 1."""
+    if card[0].startswith("Ace") and points > 21:
+        points -= 10
+    return points
+
+# function to operate the blackjack game
+def playBlackjack():
+    pass
 
 
 
