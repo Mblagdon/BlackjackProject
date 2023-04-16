@@ -101,7 +101,7 @@ def playBlackjack():
     # loop to handle blackjack game
     while True:
         # check player balance
-        if money < MIN_BET:
+        if money < betMin:
             if buyMoreChips():
                 money += addChips
             else:
