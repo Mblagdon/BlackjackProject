@@ -3,7 +3,6 @@ import random
 import db
 
 # a list of suit, rank, and point value for each card
-deck = []
 suits = ["Hearts", "Diamonds", "Clubs", "Spades"]
 ranks = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"]
 pointValues = {"Ace": 11, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10, "Jack": 10, "Queen": 10, "King": 10}
@@ -13,15 +12,17 @@ betMin = 5
 betMax = 1000
 
 
-# creating the deck
+# creating the deck as a list of lists
 def deckCreation():
+    deck = []
     for suit in suits:
         for rank in ranks:
             deck.append([suit, rank, pointValues[rank]])
+    return deck
 
 
 # a function to deal the cards
-def dealCard(hand):
+def dealCard(hand, deck):
     card = random.choice(deck)
     hand.append(card)
     deck.remove(card)
