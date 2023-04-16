@@ -6,7 +6,7 @@ import db
 deck = []
 suits = ["Hearts", "Diamonds", "Clubs", "Spades"]
 ranks = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"]
-point_values = {"Ace": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10, "Jack": 10, "Queen": 10, "King": 10}
+pointValues = {"Ace": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10, "Jack": 10, "Queen": 10, "King": 10}
 
 # the bet min and max
 betMin = 5
@@ -17,21 +17,21 @@ betMax = 1000
 def deckCreation():
     for suit in suits:
         for rank in ranks:
-            deck.append([suit, rank, point_values[rank]])
+            deck.append([suit, rank, pointValues[rank]])
 
 
 # a function to deal the cards
-def deal_card(hand):
+def dealCard(hand):
     card = random.choice(deck)
     hand.append(card)
     deck.remove(card)
 
 
 # a function to get the bet amount
-def get_bet_amount(money):
+def getBetAmount(money):
     while True:
         try:
-            bet = float(input(f"Enter the bet amount (minimum bet:{betMin}, maximum bet:{betMax}, current money: {money}: "))
+            bet = float(input(f"Enter the bet amount (minimum bet:{betMin}, maximum bet:{betMax}), current money: {money}: "))
             if bet < betMin:
                 print(f"The minimum bet must be {betMin}.Please place a larger bet.")
             elif bet > betMax:
@@ -42,6 +42,34 @@ def get_bet_amount(money):
                 return bet
         except ValueError:
             print("Invalid input, please use a valid bet number.")
+
+# added function to handle user purchasing more chips if their balance is below 0
+def buyMoreChips(money):
+    while True:
+        try:
+            if (money < 5):
+            userBuyBack = input("Would you like to purchase some more chips? (y/n)")
+            if userBuyBack.lower() == "y":
+                while True:
+                    try:
+                        addChips = int(input("Please enter the number of chips you would like to buy (min 5: "))
+                        if addChips < 5:
+                            print("The minimum amount of chips you can purchase is 5.")
+                        elif addChips > 1000:
+                            print("The maximum amount of chips you can purchase is 1000.")
+                        else:
+                            money += addChips
+                            db.writeMoney(money)
+                            return money
+                    except ValueError:
+                        print("Please enter a valid number.")
+            elif userBuyBack.lower() == "n":
+                return money
+            else:
+                print("Please enter Y or N.")
+        except ValueError:
+            print("Please enter Y or N.")
+
 
 
 
