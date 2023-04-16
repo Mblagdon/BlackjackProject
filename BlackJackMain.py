@@ -48,7 +48,7 @@ def buyMoreChips(money):
     while True:
         try:
             if (money < 5):
-            userBuyBack = input("Would you like to purchase some more chips? (y/n)")
+                userBuyBack = input("Would you like to purchase some more chips? (y/n)")
             if userBuyBack.lower() == "y":
                 while True:
                     try:
@@ -98,4 +98,3 @@ def main():
 if __name__ == '__main__':
     main()
 
-    ERROR TESTING 2.0
