@@ -159,6 +159,28 @@ def playBlackjack():
             money += bet
             db.writeMoney(money)
             continue
+        # check to see if player wins
+        if pointsInHand(playerHand) > pointsInHand(dealerHand):
+            print("You win!")
+            money += bet
+            db.writeMoney(money)
+        # check to see if dealer wins
+        if pointsInHand(playerHand) < pointsInHand(dealerHand):
+            print("Dealer wins!")
+            money -= bet
+            db.writeMoney(money)
+        # if no one wins, it is a tie
+        else:
+            print("It's a tie!")
+        # save player's money to file
+        db.writeMoney(money)
+        print("Your current balance is: ")
+        # ask if player would like to play again
+        playAgain = input("Play again? (y/n)")
+        if playAgain.lower() != "y":
+            print("Thank you for playing! See you next time! Goodbye!")
+            break
+
 def main():
     print("BLACKJACK!")
     print("Blackjack payout is 3:2")
