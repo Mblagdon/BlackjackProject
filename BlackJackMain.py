@@ -44,6 +44,7 @@ def getBetAmount(money):
         except ValueError:
             print("Invalid input, please use a valid bet number.")
 
+
 # added function to handle user purchasing more chips if their balance is below 0
 def buyMoreChips(money):
     while True:
@@ -71,19 +72,21 @@ def buyMoreChips(money):
         except ValueError:
             print("Please enter Y or N.")
 
+
 # function to handle point value of cards within hand
 def pointsInHand(hand):
     points = sum(card[1] for card in hand)
     """ if hand contains an Ace, check if total points would be greater than 21 with normal
     ace value of 11. If normal ace value of 11 would cause a bust, converts ace value to 1."""
-    if card[0].startswith("Ace") and points > 21:
-        points -= 10
+    for card in hand:
+        if card[0].startswith("Ace") and points > 21:
+            points -= 10
     return points
+
 
 # function to operate the blackjack game
 def playBlackjack():
     pass
-
 
 
 def main():
