@@ -111,7 +111,7 @@ def playBlackjack():
         # deal cards to both player and dealer
         playerHand = []
         dealerHand = []
-        deckCreation()
+        deck = deckCreation()
         # shuffle deck
         random.shuffle(deck)
         # deal cards to player and dealer
