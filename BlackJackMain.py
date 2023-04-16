@@ -124,6 +124,21 @@ def playBlackjack():
         # print dealer's hand
         print("Dealer's hand is:")
         printCards([dealerHand[0]], ["Hidden Card", "Hidden"], "?")
+        # check if player was dealt blackjack
+        if pointsInHand(playerHand) == 21:
+            print(f"Blackjack! You have won {round(bet * 1.5, 2)}")
+            money += round(bet * 1.5, 2)
+            db.writeMoney(money)
+            continue
+        # if player doesn't have blackjack, continue with game to hit or stand.
+        while pointsInHand(playerHand) < 21:
+            choice = input("Would you like to hit or stand?")
+            if choice.lower() == "hit":
+                dealCard(playerHand)
+                print("Player's hand: ")
+                printCards(playerHand)
+            elif choice == "stand":
+                break
 
 def main():
     print("BLACKJACK!")
