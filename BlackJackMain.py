@@ -83,11 +83,47 @@ def pointsInHand(hand):
             points -= 10
     return points
 
+def printCards(hand):
+    print("Your hand: ")
+    for card in hand:
+        print(f"\t{card[1]} of {card[0]}")
+        print(f"\tTotal points: {pointsInHand(hand)}")
+
 
 # function to operate the blackjack game
 def playBlackjack():
-    pass
-
+    # Read player's money from file
+    try:
+        money = db.readMoney()
+    # if file isn't found, then set money to 1000.00
+    except FileNotFoundError:
+        money = 1000.0
+    # loop to handle blackjack game
+    while True:
+        # check player balance
+        if money < MIN_BET:
+            if buyMoreChips():
+                money += addChips
+            else:
+                break
+        # get player's bet amount
+        bet = getBetAmount(money)
+        # deal cards to both player and dealer
+        playerHand = []
+        dealerHand = []
+        deckCreation()
+        # shuffle deck
+        random.shuffle(deck)
+        # deal cards to player and dealer
+        for i in range(2):
+            dealCard(playerHand)
+            dealCard(dealerHand)
+        # print player's hand
+        print("Player's hand is:")
+        printCards(playerHand)
+        # print dealer's hand
+        print("Dealer's hand is:")
+        printCards([dealerHand[0]], ["Hidden Card", "Hidden"], "?")
 
 def main():
     print("BLACKJACK!")
