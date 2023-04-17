@@ -26,6 +26,7 @@ def dealCard(hand, deck):
     card = random.choice(deck)
     hand.append(card)
     deck.remove(card)
+    return hand, deck
 
 
 # a function to get the bet amount
@@ -118,8 +119,8 @@ def playBlackjack():
         random.shuffle(deck)
         # deal cards to player and dealer
         for i in range(2):
-            dealCard(playerHand)
-            dealCard(dealerHand)
+            playerHand, deck = dealCard(playerHand, deck)
+            dealerHand, deck = dealCard(dealerHand, deck)
         # print player's hand
         print("Player's hand is:")
         printCards(playerHand)
