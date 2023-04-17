@@ -78,7 +78,7 @@ def buyMoreChips(money):
 
 # function to handle point value of cards within hand
 def pointsInHand(hand):
-    points = sum(card[1] for card in hand)
+    points = sum(int(card[1]) for card in hand)
     """ if hand contains an Ace, check if total points would be greater than 21 with normal
     ace value of 11. If normal ace value of 11 would cause a bust, converts ace value to 1."""
     for card in hand:
