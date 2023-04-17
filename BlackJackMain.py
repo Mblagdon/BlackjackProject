@@ -100,20 +100,21 @@ def printCards(hand):
 
 # function to operate the blackjack game
 def playBlackjack():
-    # Read player's money from file
-    try:
-        money = db.readMoney()
-    # if file isn't found, then set money to 1000.00
-    except FileNotFoundError:
-        money = 1000.0
-    # loop to handle blackjack game
     while True:
+    # Read player's money from file
+        try:
+            money = db.readMoney()
+    # if file isn't found, then set money to 1000.00
+        except FileNotFoundError:
+            money = 1000.0
+    # loop to handle blackjack game
+        while True:
         # check player balance
-        if money < betMin:
-            money = buyMoreChips(money)
-        else:
-            if money > 5:
-                continue
+            if money < betMin:
+                money = buyMoreChips(money)
+            else:
+                if money > 5:
+                    break
         # get player's bet amount
         bet = getBetAmount(money)
         # deal cards to both player and dealer
