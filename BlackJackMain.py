@@ -105,7 +105,7 @@ def playBlackjack():
     while True:
         # check player balance
         if money < betMin:
-            buyMoreChips(money)
+            money = buyMoreChips(money)
         else:
             print("Thanks for playing, goodbye!")
             break
@@ -126,7 +126,8 @@ def playBlackjack():
         printCards(playerHand)
         # print dealer's hand
         print("Dealer's hand is:")
-        printCards([dealerHand[0]], ["Hidden Card", "Hidden"], "?")
+        printCards([dealerHand[0]])
+        print("Hidden Card")
         # check if player was dealt blackjack
         if pointsInHand(playerHand) == 21:
             print(f"Blackjack! You have won {round(bet * 1.5, 2)}")
@@ -147,7 +148,7 @@ def playBlackjack():
                 dealCard(playerHand)
                 print("Player's hand: ")
                 printCards(playerHand)
-            elif choice == "stand":
+            elif choice.lower() == "stand":
                 break
         # check to see if player busted after hit
         if pointsInHand(playerHand) > 21:
@@ -194,10 +195,10 @@ def playBlackjack():
 def main():
     print("BLACKJACK!")
     print("Blackjack payout is 3:2")
-    hand = []
     deck = deckCreation()
-    dealCard(hand, deck)
-    pointsInHand(hand)
+    hand = []
+    hand, deck = dealCard(hand, deck)
+    points = pointsInHand(hand)
     printCards(hand)
     playBlackjack()
 
