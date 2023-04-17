@@ -95,7 +95,7 @@ def printCards(hand):
 
     for card in hand:
         print(f"\t{card[1]} of {card[0]}")
-        print(f"\tTotal points: {pointsInHand(hand)}")
+    print(f"\tTotal points: {pointsInHand(hand)}")
 
 
 # function to operate the blackjack game
