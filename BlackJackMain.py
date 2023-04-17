@@ -33,7 +33,7 @@ def dealCard(hand, deck):
 def getBetAmount(money):
     while True:
         try:
-            bet = float(input(f"Enter the bet amount (minimum bet:{betMin}, maximum bet:{betMax}), current money: {money}: "))
+            bet = float(input(f"\nEnter the bet amount (minimum bet:{betMin}, maximum bet:{betMax}), current money: {money}: "))
             if bet < betMin:
                 print(f"The minimum bet must be {betMin}.Please place a larger bet.")
             elif bet > betMax:
@@ -191,7 +191,7 @@ def playBlackjack():
             print("It's a tie!")
         # save player's money to file
         db.writeMoney(money)
-        print("\nYour current balance is: ")
+        print(f"\nYour current balance is: {money}")
         # ask if player would like to play again
         playAgain = input("\nPlay again? (y/n)")
         if playAgain.lower() != "y":
