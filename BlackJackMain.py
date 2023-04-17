@@ -112,8 +112,8 @@ def playBlackjack():
         if money < betMin:
             money = buyMoreChips(money)
         else:
-            print("Thanks for playing, goodbye!")
-            break
+            if money > 5:
+                continue
         # get player's bet amount
         bet = getBetAmount(money)
         # deal cards to both player and dealer
@@ -203,8 +203,6 @@ def main():
     deck = deckCreation()
     hand = []
     hand, deck = dealCard(hand, deck)
-    points = pointsInHand(hand)
-    printCards(hand)
     playBlackjack()
 
 if __name__ == '__main__':
