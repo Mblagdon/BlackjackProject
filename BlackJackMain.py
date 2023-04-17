@@ -194,7 +194,8 @@ def playBlackjack():
 def main():
     print("BLACKJACK!")
     print("Blackjack payout is 3:2")
-    deckCreation()
+    hand = []
+    deck = deckCreation()
     dealCard(hand, deck)
     pointsInHand(hand)
     printCards(hand)
