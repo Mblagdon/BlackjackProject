@@ -50,14 +50,14 @@ def getBetAmount(money):
 def buyMoreChips(money):
     while True:
         try:
-            if money < 5:
+            if money <= 5:
                 userBuyBack = input("Would you like to purchase some more chips? (y/n)")
             else:
                 userBuyBack = None
             if userBuyBack.lower() == "y":
                 while True:
                     try:
-                        addChips = int(input("Please enter the number of chips you would like to buy (min 5: "))
+                        addChips = int(input("Please enter the number of chips you would like to buy (min 5): "))
                         if addChips < 5:
                             print("The minimum amount of chips you can purchase is 5.")
                         elif addChips > 1000:
@@ -110,7 +110,7 @@ def playBlackjack():
     # loop to handle blackjack game
         while True:
         # check player balance
-            if money < betMin:
+            if money <= betMin:
                 money = buyMoreChips(money)
             else:
                 if money > 5:
