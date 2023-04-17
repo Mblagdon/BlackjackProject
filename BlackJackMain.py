@@ -149,10 +149,10 @@ def playBlackjack():
 
         # if player doesn't have blackjack, continue with game to hit or stand.
         while pointsInHand(playerHand) < 21:
-            choice = input("Would you like to hit or stand? ")
+            choice = input("\nWould you like to hit or stand? ")
             if choice.lower() == "hit":
-                dealCard(playerHand)
-                print("Player's hand: ")
+                dealCard(playerHand, deck)
+                print("\nPlayer's hand: ")
                 printCards(playerHand)
             elif choice.lower() == "stand":
                 break
@@ -163,11 +163,11 @@ def playBlackjack():
             db.writeMoney(money)
             continue
         # dealer's turn
-        print("Dealer's hand: ")
+        print("\nDealer's hand: ")
         printCards(dealerHand)
 
         while pointsInHand(dealerHand) < 17:
-            dealCard(dealerHand)
+            dealCard(dealerHand, deck)
             print("Dealer's hand: ")
             printCards(dealerHand)
         # check to see if dealer busts
@@ -191,9 +191,9 @@ def playBlackjack():
             print("It's a tie!")
         # save player's money to file
         db.writeMoney(money)
-        print("Your current balance is: ")
+        print("\nYour current balance is: ")
         # ask if player would like to play again
-        playAgain = input("Play again? (y/n)")
+        playAgain = input("\nPlay again? (y/n)")
         if playAgain.lower() != "y":
             print("Thank you for playing! See you next time! Goodbye!")
             break
