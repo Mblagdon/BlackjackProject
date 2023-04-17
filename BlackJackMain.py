@@ -92,7 +92,7 @@ def pointsInHand(hand):
     return points
 
 def printCards(hand):
-    print("Your hand: ")
+
     for card in hand:
         print(f"\t{card[1]} of {card[0]}")
         print(f"\tTotal points: {pointsInHand(hand)}")
@@ -149,7 +149,7 @@ def playBlackjack():
 
         # if player doesn't have blackjack, continue with game to hit or stand.
         while pointsInHand(playerHand) < 21:
-            choice = input("Would you like to hit or stand?")
+            choice = input("Would you like to hit or stand? ")
             if choice.lower() == "hit":
                 dealCard(playerHand)
                 print("Player's hand: ")
